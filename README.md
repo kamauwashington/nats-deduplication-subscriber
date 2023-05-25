@@ -47,8 +47,44 @@ This repository uses dotenv, feel free to create a .env file to override other a
         * **nats publish dedupe.us.east.regional 'Some random information' -H X-DEDUPE-TTL-MS:5000**
     * _allow the subscription a few additional seconds to bind, 503 errors may be experienced during this binding time_
 
+## Visualize
+
+### Sending multiple messages quickly
+```bash
+user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 15'
+22:25:49 Published 26 bytes to "dedupe.us.east.regional"
+
+user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 15'
+22:25:50 Published 26 bytes to "dedupe.us.east.regional"
+
+user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 15'
+22:25:50 Published 26 bytes to "dedupe.us.east.regional"
+
+user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 15'
+22:25:51 Published 26 bytes to "dedupe.us.east.regional"
+
+user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 15'
+22:25:51 Published 26 bytes to "dedupe.us.east.regional"
+
+user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 15'
+22:25:51 Published 26 bytes to "dedupe.us.east.regional"
+
+user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 15'
+22:25:52 Published 26 bytes to "dedupe.us.east.regional"
+```
+
+### Resulting Deduplication
+```bash
+user@computer nats-validation-proxy-api % nats subscribe us.east.regional
+22:25:39 Subscribing on us.east.regional 
+
+[#1] Received on "us.east.regional"
+Chemical Spill on Level 15
+```
+
 
 ## Notes
+* The TTL is a **SLIDING** TTL, where a new message resets the deduplication timeout
 * Use **&&** between duplicate commands to push multiple messages
 * This repository is heavily commented to provide context as to what and why, if in VS Code feel free to collapse all comments if they are obtrusive
     * On Mac -> Press <kbd>&#8984;</kbd> + <kbd>K</kbd> then <kbd>&#8984;</kbd> + <kbd>/</kbd> 
