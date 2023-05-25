@@ -51,31 +51,31 @@ This repository uses dotenv, feel free to create a .env file to override other a
 
 ### Sending multiple messages quickly
 ```bash
-user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
+user@computer nats-dedupe-subscriber % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
 22:25:49 Published 26 bytes to "dedupe.us.east.regional"
 
-user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
+user@computer nats-dedupe-subscriber % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
 22:25:50 Published 26 bytes to "dedupe.us.east.regional"
 
-user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
+user@computer nats-dedupe-subscriber % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
 22:25:50 Published 26 bytes to "dedupe.us.east.regional"
 
-user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
+user@computer nats-dedupe-subscriber % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
 22:25:51 Published 26 bytes to "dedupe.us.east.regional"
 
-user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
+user@computer nats-dedupe-subscriber % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
 22:25:51 Published 26 bytes to "dedupe.us.east.regional"
 
-user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
+user@computer nats-dedupe-subscriber % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
 22:25:51 Published 26 bytes to "dedupe.us.east.regional"
 
-user@computer nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
+user@computer nats-dedupe-subscriber % nats publish dedupe.us.east.regional 'Chemical Spill on Level 2'
 22:25:52 Published 26 bytes to "dedupe.us.east.regional"
 ```
 
 ### Resulting Deduplication
 ```bash
-user@computer nats-validation-proxy-api % nats subscribe us.east.regional
+user@computer nats-dedupe-subscriber % nats subscribe us.east.regional
 22:25:39 Subscribing on us.east.regional 
 
 [#1] Received on "us.east.regional"
