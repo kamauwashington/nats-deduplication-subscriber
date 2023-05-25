@@ -1,11 +1,7 @@
 import { Msg } from "nats";
 import { DEDUPE_LIFO, DEDUPE_TTL_MS, X_DEDUPE_TTL_MS } from "./constants.ts";
 
-
-export interface SearchFunc {
-    (source: string, subString: string): boolean;
-  }
-
+// this Map will act as the in memory cache for timeouts associated with duplicate message checksums
 export const dedupeCache : Map<string,NodeJS.Timeout> = new Map<string,NodeJS.Timeout>();
 
 // this function creates the timeout used to publish event when the TTL has elapsed
