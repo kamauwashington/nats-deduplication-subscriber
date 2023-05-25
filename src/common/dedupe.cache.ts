@@ -28,16 +28,16 @@ export function dedupe(checksum : string, msg : Msg, handler : (msg : Msg)=>void
     } else {
         const timeout : NodeJS.Timeout = dedupeCache.get(checksum);
         // this functionality is for a future implementation where JSON Path include and excludes will apply to the checksum
-        if (!DEDUPE_LIFO) {
-            // FIFO 
-            // this will ensure that only the first message is published, by resetting the EXISTING timeout
-            timeout.refresh();
-        } else {
+        if (DEDUPE_LIFO) {
             // LIFO 
             // this will ensure that the last message recieved will be the message published
             clearTimeout(timeout);
             // create a new timeout with the current message 
             setDedupeTimeout(checksum,msg,handler);
+        } else {
+            // FIFO 
+            // this will ensure that only the first message is published, by resetting the EXISTING timeout
+            timeout.refresh();
         }
     }
 }
