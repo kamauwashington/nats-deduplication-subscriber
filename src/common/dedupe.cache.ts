@@ -23,7 +23,7 @@ function setDedupeTimeout(checksum : string, msg : Msg, handler : (msg : Msg)=>v
 
 export function dedupe(checksum : string, msg : Msg, handler : (msg : Msg)=>void) : void {
     if (!dedupeCache.has(checksum)) {
-        // this is the first ti
+        // this is the initial timeout if this checksum does not exist
         setDedupeTimeout(checksum,msg,handler);
     } else {
         const timeout : NodeJS.Timeout = dedupeCache.get(checksum);
