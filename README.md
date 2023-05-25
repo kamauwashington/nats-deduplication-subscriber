@@ -42,7 +42,7 @@ This repository uses dotenv, feel free to create a .env file to override other a
     * **nats subscribe us.east.regional**
     * _allow the subscription a few additional seconds to bind, 503 errors may be experienced during this binding time_
 1) open another terminal to the root of this repository and run :
-    * **nats-dedup-subscriber-proxy % nats publish dedupe.us.east.regional 'Some random information'**
+    * **nats publish dedupe.us.east.regional 'Some random information'**
         * message independent TTL can be set by doing the following
         * **nats publish dedupe.us.east.regional 'Some random information' -H X-DEDUPE-TTL-MS:5000**
     * _allow the subscription a few additional seconds to bind, 503 errors may be experienced during this binding time_
