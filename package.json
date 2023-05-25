@@ -2,6 +2,9 @@
   "name": "nats-",
   "version": "1.0.0",
   "description": "Nats.io Deduplication Subscriber",
+  "engines" : { 
+    "node" : ">=18.0.0"
+  },
   "scripts": {
     "ts-node": "ts-node",
     "dedupe": "ts-node -r dotenv/config --esm ./src/dedupe.subscription.ts"

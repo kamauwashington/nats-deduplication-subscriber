@@ -6,7 +6,7 @@ or starting point for a production level implementation.
 
 This project illustrates the use of [Nats.io](https://nats.io/) to perform a "server-wide" or "targeted" message deduplication strategy using [Nats.io built-in Subject Wildcards](https://docs.nats.io/nats-concepts/subjects#wildcards). In most pub/sub architectures there is a need for message deduplication based on TTL, as in *"duplicate messages arriving within the same timeframe should only invoke subscribers once"*. Not only does this implementation provide this capability via filtering but dynamically through message headers as well.
 
-> What will be seen in this example is a generic subscriber filtering on "dedupe.>". If a NATS Subject named "**us.east.regional**" is the target subject for deduplication, posting to "**dedupe.us.east.regional**" will deduplicate based on a TTL (default 1s) and post to "**us.east.regional**" in a FIFO fashion (this can be modified, see below).
+> What will be seen in this example is a generic subscriber filtering on "dedupe.>". If a NATS Subject named "**us.east.regional**" is the target subject for deduplication, publishing to the "**dedupe.us.east.regional**" NATS Subject will deduplicate based on a TTL (default 1s) and post to "**us.east.regional**" once reached in a FIFO fashion (this can be modified, see below).
 
 ## Prerequisites
 
