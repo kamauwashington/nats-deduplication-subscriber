@@ -86,7 +86,7 @@ Chemical Spill on Level 15
 ## Notes
 * JetStream does provide [time-scoped](https://nats.io/blog/new-per-subject-discard-policy/#cant-you-do-that-already) deduplication. However as to the granularity and flexibility of JetStream, more information is needed. This solution is also applicable for those not using JetStream
 * The TTL is a **SLIDING** TTL, where a new message resets the deduplication timeout
-* Matching is performed using the **MD5** checksum on the NATS Message UInt8Array (which allow for checksum on all types JSON,string,number, protobuff)
+* Matching is performed using the **MD5** checksum on the NATS Message UInt8Array (Byte[]) which allows for checksum on all types JSON,string,number, protobuff
 * Use **&&** between duplicate commands to push multiple messages
 * This repository is heavily commented to provide context as to what and why, if in VS Code feel free to collapse all comments if they are obtrusive
     * On Mac -> Press <kbd>&#8984;</kbd> + <kbd>K</kbd> then <kbd>&#8984;</kbd> + <kbd>/</kbd> 
